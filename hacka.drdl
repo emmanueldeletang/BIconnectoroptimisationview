@@ -1,0 +1,317 @@
+schema:
+- db: hacka
+  tables:
+  - table: mgendata
+    collection: mgendata
+    pipeline: []
+    columns:
+    - Name: Customer.Name.last
+      MongoType: string
+      SqlName: Customer.Name.last
+      SqlType: varchar
+    - Name: Customer.age
+      MongoType: int
+      SqlName: Customer.age
+      SqlType: int
+    - Name: Customer.country
+      MongoType: string
+      SqlName: Customer.country
+      SqlType: varchar
+    - Name: Customer.created_at
+      MongoType: date
+      SqlName: Customer.created_at
+      SqlType: timestamp
+    - Name: Customer.gender
+      MongoType: string
+      SqlName: Customer.gender
+      SqlType: varchar
+    - Name: Customer.is_active
+      MongoType: bool
+      SqlName: Customer.is_active
+      SqlType: boolean
+    - Name: Customer.phone_no
+      MongoType: number
+      SqlName: Customer.phone_no
+      SqlType: numeric
+    - Name: _id
+      MongoType: bson.ObjectId
+      SqlName: _id
+      SqlType: varchar
+  - table: mgendata_address
+    collection: mgendata
+    pipeline:
+    - $unwind:
+        includeArrayIndex: address_idx
+        path: $address
+    columns:
+    - Name: _id
+      MongoType: bson.ObjectId
+      SqlName: _id
+      SqlType: varchar
+    - Name: address.city
+      MongoType: string
+      SqlName: address.city
+      SqlType: varchar
+    - Name: address.house_no
+      MongoType: int
+      SqlName: address.house_no
+      SqlType: int
+    - Name: address.street
+      MongoType: string
+      SqlName: address.street
+      SqlType: varchar
+    - Name: address.zip_code
+      MongoType: int
+      SqlName: address.zip_code
+      SqlType: int
+    - Name: address_idx
+      MongoType: int
+      SqlName: address_idx
+      SqlType: int
+  - table: mgendata_phone
+    collection: mgendata
+    pipeline:
+    - $unwind:
+        includeArrayIndex: phone_idx
+        path: $phone
+    columns:
+    - Name: _id
+      MongoType: bson.ObjectId
+      SqlName: _id
+      SqlType: varchar
+    - Name: phone.numero
+      MongoType: int
+      SqlName: phone.numero
+      SqlType: int
+    - Name: phone.type
+      MongoType: string
+      SqlName: phone.type
+      SqlType: varchar
+    - Name: phone_idx
+      MongoType: int
+      SqlName: phone_idx
+      SqlType: int
+  - table: mgendata_tags
+    collection: mgendata
+    pipeline:
+    - $unwind:
+        includeArrayIndex: tags_idx
+        path: $tags
+    columns:
+    - Name: _id
+      MongoType: bson.ObjectId
+      SqlName: _id
+      SqlType: varchar
+    - Name: tags.id
+      MongoType: bson.ObjectId
+      SqlName: tags.id
+      SqlType: varchar
+    - Name: tags.label
+      MongoType: string
+      SqlName: tags.label
+      SqlType: varchar
+    - Name: tags_idx
+      MongoType: int
+      SqlName: tags_idx
+      SqlType: int
+  - table: mgendata_tags_subtags
+    collection: mgendata
+    pipeline:
+    - $unwind:
+        includeArrayIndex: tags_idx
+        path: $tags
+    - $unwind:
+        includeArrayIndex: tags.subtags_idx
+        path: $tags.subtags
+    columns:
+    - Name: _id
+      MongoType: bson.ObjectId
+      SqlName: _id
+      SqlType: varchar
+    - Name: tags.subtags
+      MongoType: string
+      SqlName: tags.subtags
+      SqlType: varchar
+    - Name: tags.subtags_idx
+      MongoType: int
+      SqlName: tags.subtags_idx
+      SqlType: int
+    - Name: tags_idx
+      MongoType: int
+      SqlName: tags_idx
+      SqlType: int
+  - table: mgendata_view
+    collection: mgendata_view
+    pipeline: []
+    columns:
+    - Name: Customer.Name.last
+      MongoType: string
+      SqlName: Customer.Name.last
+      SqlType: varchar
+    - Name: Customer.age
+      MongoType: int
+      SqlName: Customer.age
+      SqlType: int
+    - Name: Customer.country
+      MongoType: string
+      SqlName: Customer.country
+      SqlType: varchar
+    - Name: Customer.created_at
+      MongoType: date
+      SqlName: Customer.created_at
+      SqlType: timestamp
+    - Name: Customer.gender
+      MongoType: string
+      SqlName: Customer.gender
+      SqlType: varchar
+    - Name: Customer.is_active
+      MongoType: bool
+      SqlName: Customer.is_active
+      SqlType: boolean
+    - Name: Customer.phone_no
+      MongoType: number
+      SqlName: Customer.phone_no
+      SqlType: numeric
+    - Name: _id
+      MongoType: bson.ObjectId
+      SqlName: _id
+      SqlType: varchar
+    - Name: address.city
+      MongoType: string
+      SqlName: address.city
+      SqlType: varchar
+    - Name: address.house_no
+      MongoType: int
+      SqlName: address.house_no
+      SqlType: int
+    - Name: address.street
+      MongoType: string
+      SqlName: address.street
+      SqlType: varchar
+    - Name: address.zip_code
+      MongoType: int
+      SqlName: address.zip_code
+      SqlType: int
+    - Name: arrayIndex
+      MongoType: int64
+      SqlName: arrayIndex
+      SqlType: int64
+    - Name: phone.numero
+      MongoType: int
+      SqlName: phone.numero
+      SqlType: int
+    - Name: phone.type
+      MongoType: string
+      SqlName: phone.type
+      SqlType: varchar
+    - Name: tags.id
+      MongoType: bson.ObjectId
+      SqlName: tags.id
+      SqlType: varchar
+    - Name: tags.label
+      MongoType: string
+      SqlName: tags.label
+      SqlType: varchar
+  - table: mgendata_view_tags_subtags
+    collection: mgendata_view
+    pipeline:
+    - $unwind:
+        includeArrayIndex: tags.subtags_idx
+        path: $tags.subtags
+    columns:
+    - Name: _id
+      MongoType: bson.ObjectId
+      SqlName: _id
+      SqlType: varchar
+    - Name: tags.subtags
+      MongoType: string
+      SqlName: tags.subtags
+      SqlType: varchar
+    - Name: tags.subtags_idx
+      MongoType: int
+      SqlName: tags.subtags_idx
+      SqlType: int
+  - table: mgendata_view2_tags_subtags
+    collection: mgendata
+    pipeline:  
+    - $unwind:
+        includeArrayIndex: address_idx
+        path: $address
+    - $unwind:
+        includeArrayIndex: phone_idx
+        path: $phone
+    - $unwind:
+        includeArrayIndex: tags_idx
+        path: $tags
+    - $unwind:
+        includeArrayIndex: tags.subtags_idx
+        path: $tags.subtags
+    columns:
+    - Name: Customer.Name.last
+      MongoType: string
+      SqlName: Customer.Name.last
+      SqlType: varchar
+    - Name: Customer.age
+      MongoType: int
+      SqlName: Customer.age
+      SqlType: int
+    - Name: Customer.country
+      MongoType: string
+      SqlName: Customer.country
+      SqlType: varchar
+    - Name: Customer.created_at
+      MongoType: date
+      SqlName: Customer.created_at
+      SqlType: timestamp
+    - Name: Customer.gender
+      MongoType: string
+      SqlName: Customer.gender
+      SqlType: varchar
+    - Name: Customer.is_active
+      MongoType: bool
+      SqlName: Customer.is_active
+      SqlType: boolean
+    - Name: Customer.phone_no
+      MongoType: number
+      SqlName: Customer.phone_no
+      SqlType: numeric
+    - Name: _id
+      MongoType: bson.ObjectId
+      SqlName: _id
+      SqlType: varchar
+    - Name: address.city
+      MongoType: string
+      SqlName: address.city
+      SqlType: varchar
+    - Name: address.house_no
+      MongoType: int
+      SqlName: address.house_no
+      SqlType: int
+    - Name: address.street
+      MongoType: string
+      SqlName: address.street
+      SqlType: varchar
+    - Name: address.zip_code
+      MongoType: int
+      SqlName: address.zip_code
+      SqlType: int
+    - Name: arrayIndex
+      MongoType: int64
+      SqlName: arrayIndex
+      SqlType: int64
+    - Name: phone.numero
+      MongoType: int
+      SqlName: phone.numero
+      SqlType: int
+    - Name: phone.type
+      MongoType: string
+      SqlName: phone.type
+      SqlType: varchar
+    - Name: tags.id
+      MongoType: bson.ObjectId
+      SqlName: tags.id
+      SqlType: varchar
+    - Name: tags.label
+      MongoType: string
+      SqlName: tags.label
+      SqlType: varchar
