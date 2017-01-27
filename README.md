@@ -14,5 +14,5 @@ download the repository
 
 
 
-launch the install.sh 
+launch the mongobiconnectordemo.sh
 
