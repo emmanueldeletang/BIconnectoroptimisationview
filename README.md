@@ -16,3 +16,12 @@ Usage
 * Checkout the repository 
 * If you use mongodb an another port change the port in `mongobiconnectordemo.sh`
 * Launch `mongobiconnectordemo.sh`
+
+Demo 
+-----
+
+* use tableau and connect to the hacka db with the port 3307 ( default port in mongodb bi connector ) 
+* download the data with the mgendata, mgendata_adress, mgendata_phone ,mgendata_tags ( Tableau will make the join for you ) 
+* download the data with the mgendata_view ( direct view made in mongodb 3.4) 
+* download the data with the mgendata_view2_tags_subtags ( view made in DRDL ) 
+* if you go to inspect the hacka.log , you will see that the view query is faster than the drdl and faster than a join in tableau
