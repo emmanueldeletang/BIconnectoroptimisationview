@@ -13,6 +13,6 @@ Usage
 -----
 
 * Checkout the repository 
-* If you use mongodb an another port change the port in `install.sh`
+* If you use mongodb an another port change the port in `mongobiconnectordemo.sh`
 * Launch `mongobiconnectordemo.sh`
 
