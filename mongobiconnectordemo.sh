@@ -1,7 +1,7 @@
 #!/bin/bash
 
-MONGORESTORE=$(which mongorestore)
-MONGOSQLD=$(which mongosqld)
+MONGORESTORE=$mongorestore
+MONGOSQLD=$mongosqld
 
 echo '***'
 echo '***'
