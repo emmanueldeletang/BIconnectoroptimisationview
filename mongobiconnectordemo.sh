@@ -1,23 +1,24 @@
 #!/bin/bash
 
-export MONGOPATH=/Users/emmanuel.deletang/mongodb/bin
+MONGORESTORE=$(which mongorestore)
+MONGOSQLD=$(which mongosqld)
+
 echo '***'
 echo '***'
 echo 'restore the DB  '
 echo '***'
 echo '***'
-$MONGOPATH/mongorestore 
+
+$MONGORESTORE --port 27017
+
 echo '***'
 echo '***'
-echo 'launch the BI connextor '
-$MONGOPATH/mongosqld --mongo-uri=mongodb://localhost:27017 --schema hacka.drdl -vv --fork --logPath hacka.log
+echo 'launch the BI connextor'
+
+$MONGOSQLD --mongo-uri=mongodb://localhost:27017 --schema hacka.drdl -vv --fork --logPath hacka.log
+
 echo '***'
 echo '***'
 echo 'bi connector ok '
 echo '***'
-
 echo '***'
-
-
-
-
